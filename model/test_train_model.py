@@ -100,7 +100,7 @@ def test_load_model():
         assert encoder is not None
         assert lb is not None
         assert model is not None
-    except AssertionError: 
+    except AssertionError as err: 
         logging.error(
             "Seriliazed model components not loaded"
         )
