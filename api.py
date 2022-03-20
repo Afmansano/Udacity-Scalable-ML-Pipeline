@@ -8,8 +8,6 @@ from model.train_model import process_data
 from model.train_model import get_categorical_features
 from model.ml.model import inference
 
-#age,workclass,fnlgt,education,education-num,marital-status,occupation,relationship,race,sex,capital-gain,capital-loss,hours-per-week,native-country,salary
-
 
 class Person(BaseModel):
     age: int
@@ -30,9 +28,9 @@ class Person(BaseModel):
 
 app = FastAPI()
 
+
 @app.post("/")
 async def predict(person: Person):
-
     data = pd.DataFrame({
         'age': person.age,
         'workclass': person.workclass,
@@ -64,8 +62,9 @@ async def predict(person: Person):
     pred = inference(model, X)
     salary = lb.inverse_transform(pred)[0]
     return {
-        "salary" : salary
+        "salary": salary
     }
+
 
 @app.get("/")
 async def send_message():
@@ -73,7 +72,3 @@ async def send_message():
         "message": "Welcome to ML Pipeline app!"
     }
 
-
-
-
-    

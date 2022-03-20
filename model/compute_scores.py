@@ -9,11 +9,8 @@ from train_model import get_categorical_features
 from train_model import process_data
 from train_model import load_model
 
-from ml.model import train_model
 from ml.model import inference
 from ml.model import compute_model_metrics
-
-from os import path
 
 logging.basicConfig(
     filename='./logs/compute_scores.log',
@@ -37,13 +34,13 @@ def check_performance_on_slices():
             X_feat = test[test[feat] == value]        
             logging.info(f"Testing on feat {feat} for value {value}")
             X_test, y_test, _, _ = process_data(
-            data=X_feat, 
-            label="salary", 
-            cat_features=cat_features,
-            training=False,
-            encoder=encoder,
-            lb=lb
-        )
+                data=X_feat,
+                label="salary",
+                cat_features=cat_features,
+                training=False,
+                encoder=encoder,
+                lb=lb
+            )
 
         y_pred = inference(model, X_test)
         precision, recall, fbeta = compute_model_metrics(y_test, y_pred)

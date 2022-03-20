@@ -19,6 +19,7 @@ logging.basicConfig(
 
 MODEL_FOLDER = "trained_model"
 
+
 def test_read_data():
     '''
     test data load
@@ -36,7 +37,8 @@ def test_read_data():
         assert df.shape[1] > 0
     except AssertionError as err:
         logging.error(
-            "Testing import_data: The file doesn't appear to have rows and columns")
+            "Testing import_data: The file doesn't appear to \
+                have rows and columns")
         raise err
 
 
@@ -50,14 +52,15 @@ def test_process_data():
     try:
         X, y, encoder, lb = process_data(
             df, 
-            label="salary", 
-            cat_features = get_categorical_features(),
+            label="salary",
+            cat_features=get_categorical_features(),
             training=True
         )
         assert encoder is not None and lb is not None
     except AssertionError as err:
         logging.error(
-            "Testing process_data: created encoders should be not be None for training")
+            "Testing process_data: created encoders should be not \
+                be None for training")
         raise err
 
     try:
@@ -65,7 +68,8 @@ def test_process_data():
         assert X.shape[1] > 0
     except AssertionError as err:
         logging.error(
-            "Testing process_data: The X dataframe doesn't appear to have rows and columns")
+            "Testing process_data: The X dataframe doesn't appear to \
+                have rows and columns")
         raise err
 
     try:

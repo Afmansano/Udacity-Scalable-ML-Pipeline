@@ -20,6 +20,7 @@ logger = logging.getLogger()
 
 MODEL_FOLDER = "trained_model"
 
+
 def get_categorical_features():
     cat_features = [
         "workclass",
@@ -34,7 +35,14 @@ def get_categorical_features():
     return cat_features
 
 
-def process_data(data, label, cat_features, training=True, encoder=None, lb=None):
+def process_data(
+    data, 
+    label, 
+    cat_features, 
+    training=True, 
+    encoder=None, 
+    lb=None
+):
     """
     Process data for training or inference
 
@@ -79,7 +87,10 @@ def process_data(data, label, cat_features, training=True, encoder=None, lb=None
     if training:
         logger.info("Fitting encoders")
         lb = LabelBinarizer().fit(y.values)
-        encoder = OneHotEncoder(sparse=False, handle_unknown="ignore").fit(X_cat.values)
+        encoder = OneHotEncoder(
+            sparse=False, 
+            handle_unknown="ignore"
+        ).fit(X_cat.values)
     else:
         logger.info("Performing inference")
     
@@ -102,15 +113,15 @@ def read_data():
 def train(model_folder=MODEL_FOLDER):
     df = read_data()
 
-    # Optional enhancement, use K-fold cross validation instead of a train-test split.
+    # Optional enhancement, use K-fold cross validation 
+    # instead of a train-test split.
     train, test = train_test_split(df, test_size=0.20, random_state=42) 
     cat_features = get_categorical_features()
 
-
     X_train, y_train, encoder, lb = process_data(
-        train, 
-        label="salary", 
-        cat_features = cat_features,
+        train,
+        label="salary",
+        cat_features=cat_features,
         training=True
     )
 
@@ -133,12 +144,12 @@ def train(model_folder=MODEL_FOLDER):
 
 def load_model(model_folder=MODEL_FOLDER):
     logging.info("Loading model")
-    model = load(path.join(model_folder,  "model.pkl"))
+    model = load(path.join(model_folder, "model.pkl"))
 
     logging.info("Loading label encoder")
-    lb  = load(path.join(model_folder, "label_encoder.pkl"))
+    lb = load(path.join(model_folder, "label_encoder.pkl"))
 
     logging.info("Loading categorical encoder")
     encoder = load(path.join(model_folder, "categorical_encoder.pkl"))
-    
+
     return encoder, lb, model
