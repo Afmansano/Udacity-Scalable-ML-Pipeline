@@ -23,6 +23,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+*.pkg
 MANIFEST
 
 # PyInstaller
@@ -113,3 +114,8 @@ mlruns/
 outputs/
 random_forest_dir/
 multirun/
+
+# Models
+*.pkl
+
+
