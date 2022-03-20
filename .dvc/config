@@ -1,0 +1,6 @@
+[core]
+    remote = awsremote
+['remote "awsremote"']
+    url = s3://udacity-afmansano
+['remote "localremote"']
+    url = ../data
