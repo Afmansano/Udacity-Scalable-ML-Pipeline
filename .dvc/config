@@ -2,5 +2,7 @@
     remote = awsremote
 ['remote "awsremote"']
     url = s3://udacity-afmansano
+    credentialpath = /Users/alexmansano/.aws/credentials
+    profile = afmansano
 ['remote "localremote"']
     url = ../data
