@@ -3,6 +3,6 @@
 ['remote "awsremote"']
     url = s3://udacity-afmansano
     credentialpath = /Users/alexmansano/.aws/credentials
-    profile = afmansano
+    profile = default
 ['remote "localremote"']
     url = ../data
