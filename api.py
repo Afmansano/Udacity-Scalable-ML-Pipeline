@@ -34,7 +34,7 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
     if os.system("dvc pull") != 0:
         exit("dvc pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
-    
+
 
 @app.post("/")
 async def predict(person: Person):
@@ -55,7 +55,8 @@ async def predict(person: Person):
         'native-country': person.native_country
     }, index=[0])
 
-    encoder, lb, model = load_model('model/trained_model')
+
+    encoder, lb, model = load_model('./model/trained_model')
 
     X, _, _, _ = process_data(
         data=data, 
