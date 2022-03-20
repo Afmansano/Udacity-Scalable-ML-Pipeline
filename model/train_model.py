@@ -99,7 +99,7 @@ def read_data():
     return df
 
 
-def train():
+def train(model_folder=MODEL_FOLDER):
     df = read_data()
 
     # Optional enhancement, use K-fold cross validation instead of a train-test split.
@@ -126,19 +126,19 @@ def train():
 
     # Train and save a model.
     model = train_model(X_train, y_train)
-    dump(model, path.join(MODEL_FOLDER, "model.pkl"))
-    dump(encoder, path.join(MODEL_FOLDER, "categorical_encoder.pkl"))
-    dump(lb, path.join(MODEL_FOLDER, "label_encoder.pkl"))
+    dump(model, path.join(model_folder, "model.pkl"))
+    dump(encoder, path.join(model_folder, "categorical_encoder.pkl"))
+    dump(lb, path.join(model_folder, "label_encoder.pkl"))
 
 
-def load_model():
+def load_model(model_folder=MODEL_FOLDER):
     logging.info("Loading model")
-    model = load(path.join(MODEL_FOLDER,  "model.pkl"))
+    model = load(path.join(model_folder,  "model.pkl"))
 
     logging.info("Loading label encoder")
-    lb  = load(path.join(MODEL_FOLDER, "label_encoder.pkl"))
+    lb  = load(path.join(model_folder, "label_encoder.pkl"))
 
     logging.info("Loading categorical encoder")
-    encoder = load(path.join(MODEL_FOLDER, "categorical_encoder.pkl"))
+    encoder = load(path.join(model_folder, "categorical_encoder.pkl"))
     
     return encoder, lb, model
