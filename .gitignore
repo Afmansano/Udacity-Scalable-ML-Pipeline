@@ -115,7 +115,4 @@ outputs/
 random_forest_dir/
 multirun/
 
-# Models
-*.pkl
-
 
