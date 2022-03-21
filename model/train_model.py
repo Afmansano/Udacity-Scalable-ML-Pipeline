@@ -18,7 +18,7 @@ logging.basicConfig(
     format='%(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
 
-MODEL_FOLDER = "trained_model"
+MODEL_FOLDER = "../trained_model"
 
 
 def get_categorical_features():
