@@ -25,7 +25,7 @@ logging.basicConfig(
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
 
-MODEL_FOLDER = "trained_model"
+MODEL_FOLDER = "trained_model_test"
 
 
 def test_read_data():
@@ -93,7 +93,7 @@ def test_train():
     '''
 
     try:
-        train()
+        train(MODEL_FOLDER)
         assert path.isfile(path.join(MODEL_FOLDER, "model.pkl"))
         assert path.isfile(path.join(MODEL_FOLDER, "categorical_encoder.pkl"))
         assert path.isfile(path.join(MODEL_FOLDER, "label_encoder.pkl"))
@@ -108,7 +108,7 @@ def test_load_model():
     '''
 
     try:
-        encoder, lb, model = load_model()
+        encoder, lb, model = load_model(MODEL_FOLDER)
         assert encoder is not None
         assert lb is not None
         assert model is not None
@@ -127,7 +127,7 @@ def test_inference():
 
     #perform test with no label
     df = df.drop(['salary'], axis=1)
-    encoder, lb, model = load_model()
+    encoder, lb, model = load_model(MODEL_FOLDER)
 
     try:
         X, _, _, _ = process_data(

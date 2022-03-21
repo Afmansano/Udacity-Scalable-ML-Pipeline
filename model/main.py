@@ -11,7 +11,7 @@ def go(args):
     Execute Piepeline
     """
 
-    if argparse.pipeline_steps == "train_test_model":
+    if args.pipeline_steps == "train_test_model":
         train_model.train()
 
     if args.pipeline_steps == "check_performance":

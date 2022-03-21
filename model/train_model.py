@@ -8,7 +8,7 @@ from sklearn.preprocessing import LabelBinarizer
 from sklearn.preprocessing import OneHotEncoder
 from joblib import dump
 from joblib import load
-from .ml.model import train_model
+from model.ml.model import train_model
 from os import path
 from os import mkdir
 
@@ -141,6 +141,9 @@ def train(model_folder=MODEL_FOLDER):
     )
 
     # Train and save a model.
+    if not path.exists(model_folder):
+        mkdir(model_folder)
+
     model = train_model(X_train, y_train)
     dump(model, path.join(model_folder, "model.pkl"))
     dump(encoder, path.join(model_folder, "categorical_encoder.pkl"))
