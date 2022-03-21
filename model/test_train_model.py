@@ -12,12 +12,12 @@ from .train_model import load_model
 from .ml.model import inference
 
 logging.basicConfig(
-    filename='./logs/tests.log',
+    filename='./model/logs/tests.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
 
-MODEL_FOLDER = "../trained_model"
+MODEL_FOLDER = "trained_model"
 
 
 def test_read_data():

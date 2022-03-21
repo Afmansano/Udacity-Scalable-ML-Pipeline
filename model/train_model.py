@@ -12,13 +12,13 @@ from .ml.model import train_model
 from os import path
 
 logging.basicConfig(
-    filename='./logs/train_model.log',
+    filename='./model/logs/train_model.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger()
 
-MODEL_FOLDER = "../trained_model"
+MODEL_FOLDER = "trained_model"
 
 
 def get_categorical_features():
@@ -106,7 +106,7 @@ def process_data(
 
 def read_data():
     # Add code to load in the data.
-    df = pd.read_csv("../data/clean_census.csv")
+    df = pd.read_csv("data/clean_census.csv")
     return df
 
 

@@ -13,7 +13,7 @@ from ml.model import inference
 from ml.model import compute_model_metrics
 
 logging.basicConfig(
-    filename='./logs/compute_scores.log',
+    filename='./model/logs/compute_scores.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
