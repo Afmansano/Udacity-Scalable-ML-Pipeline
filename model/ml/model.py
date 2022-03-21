@@ -4,8 +4,16 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 
+from os import path
+from os import mkdir
+
+
+logging_path = './model/logs/'
+if not path.exists(logging_path):
+    mkdir(logging_path)
+
 logging.basicConfig(
-    filename='./model/logs/model.log',
+    filename=path.join(logging_path, 'model.log'),
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')

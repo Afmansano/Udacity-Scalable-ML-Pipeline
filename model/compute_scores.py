@@ -12,8 +12,16 @@ from train_model import load_model
 from ml.model import inference
 from ml.model import compute_model_metrics
 
+from os import path
+from os import mkdir
+
+
+logging_path = './model/logs/'
+if not path.exists(logging_path):
+    mkdir(logging_path)
+
 logging.basicConfig(
-    filename='./model/logs/compute_scores.log',
+    filename=path.join(logging_path,'compute_scores.log'),
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')

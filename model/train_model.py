@@ -10,9 +10,14 @@ from joblib import dump
 from joblib import load
 from .ml.model import train_model
 from os import path
+from os import mkdir
+
+logging_path = './model/logs/'
+if not path.exists(logging_path):
+    mkdir(logging_path)
 
 logging.basicConfig(
-    filename='./model/logs/train_model.log',
+    filename=path.join(logging_path,'train_model.log'),
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
