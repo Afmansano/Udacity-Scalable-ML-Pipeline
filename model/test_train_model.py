@@ -17,7 +17,7 @@ logging.basicConfig(
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
 
-MODEL_FOLDER = "trained_model"
+MODEL_FOLDER = "../trained_model"
 
 
 def test_read_data():
