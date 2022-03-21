@@ -56,7 +56,7 @@ async def predict(person: Person):
     }, index=[0])
 
 
-    encoder, lb, model = load_model('./model/trained_model')
+    encoder, lb, model = load_model('trained_model')
 
     X, _, _, _ = process_data(
         data=data, 
