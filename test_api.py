@@ -1,3 +1,7 @@
+"""
+Test Fast API for both classes and get
+"""
+
 from fastapi.testclient import TestClient
 from api import app
 

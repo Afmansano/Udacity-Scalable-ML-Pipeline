@@ -30,6 +30,10 @@ MODEL_FOLDER = "trained_model"
 
 
 def check_performance_on_slices():
+    """
+    Slice data on categorical features and
+    check model performance
+    """
     df = read_data()
 
     encoder, lb, model = load_model()

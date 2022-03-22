@@ -110,12 +110,23 @@ def process_data(
 
 
 def read_data():
+    """
+    Loads census data
+    """
     # Add code to load in the data.
     df = pd.read_csv("data/clean_census.csv")
     return df
 
 
 def train(model_folder=MODEL_FOLDER):
+    """
+    Trains a machine learning model and saves its artifacts
+
+    Inputs
+    ---------
+    model_folder: str
+        Path to the folder where the model will be saved
+    """
     df = read_data()
 
     # Optional enhancement, use K-fold cross validation 
@@ -145,12 +156,24 @@ def train(model_folder=MODEL_FOLDER):
         mkdir(model_folder)
 
     model = train_model(X_train, y_train)
+
+    if not path.exists(model_folder):
+        mkdir(model_folder)
+
     dump(model, path.join(model_folder, "model.pkl"))
     dump(encoder, path.join(model_folder, "categorical_encoder.pkl"))
     dump(lb, path.join(model_folder, "label_encoder.pkl"))
 
 
 def load_model(model_folder=MODEL_FOLDER):
+    """
+    Loads a trained machine learning model artifacts
+
+    Inputs
+    --------
+    model_folder: str
+        Path to the folder where the models artifacts are saved
+    """
     logging.info("Loading model")
     model = load(path.join(model_folder, "model.pkl"))
 

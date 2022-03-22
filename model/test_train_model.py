@@ -29,9 +29,9 @@ MODEL_FOLDER = "trained_model_test"
 
 
 def test_read_data():
-    '''
+    """
     test data load
-    '''
+    """
 
     try:
         df = read_data()
@@ -51,9 +51,9 @@ def test_read_data():
 
 
 def test_process_data():
-    '''
+    """
     test data processing and encoders
-    '''
+    """
 
     df = read_data()[:1000]
 
@@ -88,9 +88,9 @@ def test_process_data():
 
     
 def test_train():
-    '''
+    """
     test model train pipeline and if it saves on disk
-    '''
+    """
 
     try:
         train(MODEL_FOLDER)
@@ -103,9 +103,9 @@ def test_train():
 
 
 def test_load_model():
-    '''
+    """
     test model and encoder loading
-    '''
+    """
 
     try:
         encoder, lb, model = load_model(MODEL_FOLDER)
@@ -120,9 +120,9 @@ def test_load_model():
 
 
 def test_inference():
-    '''
+    """
     test model inference
-    '''
+    """
     df = read_data()[:100]
 
     #perform test with no label
