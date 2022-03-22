@@ -14,12 +14,10 @@ def go(args):
     if args.pipeline_steps == "train_test_model":
         train_model.train()
 
-    if args.pipeline_steps == "check_performance":
+    elif args.pipeline_steps == "check_performance":
         compute_scores.check_performance_on_slices()
-
-    if args.pipeline_steps == "all":
-        train_model.train()
-        compute_scores.check_performance_on_slices()
+    else:
+        raise ValueError("pipeline_stes should be train_test_model or check_performance")
 
 
 if __name__ == "__main__":
@@ -29,7 +27,7 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "--pipeline_steps",
-        help="Pipeline step to be executed: train_test_model or check_performance or all",
+        help="Pipeline step to be executed: train_test_model or check_performance",
         type=str,
         required=False,
         default="all" 

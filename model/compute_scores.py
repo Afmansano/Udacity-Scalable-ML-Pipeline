@@ -41,22 +41,24 @@ def check_performance_on_slices():
     _, test = train_test_split(df, test_size=0.20, random_state=42)
     cat_features = get_categorical_features()
 
-    for feat in cat_features:
-        for value in test[feat].unique():
-            X_feat = test[test[feat] == value]        
-            logging.info(f"Testing on feat {feat} for value {value}")
-            X_test, y_test, _, _ = process_data(
-                data=X_feat,
-                label="salary",
-                cat_features=cat_features,
-                training=False,
-                encoder=encoder,
-                lb=lb
-            )
+    with open("slice_output.txt", "w") as f:
+        for feat in cat_features:
+            for value in test[feat].unique():
+                X_feat = test[test[feat] == value]        
+                logging.info(f"Testing on feat {feat} for value {value}")
+                X_test, y_test, _, _ = process_data(
+                    data=X_feat,
+                    label="salary",
+                    cat_features=cat_features,
+                    training=False,
+                    encoder=encoder,
+                    lb=lb
+                )
 
-        y_pred = inference(model, X_test)
-        precision, recall, fbeta = compute_model_metrics(y_test, y_pred)
+            y_pred = inference(model, X_test)
+            precision, recall, fbeta = compute_model_metrics(y_test, y_pred)
 
-        print(f"Precision on slice {feat}: {precision:.4f}")
-        print(f"Recall on slice {feat}: {recall:.4f}")
-        print(f"Fbeta on slice {feat}: {fbeta:.4f}\n")
+            f.write(f"Precision on slice {feat}: {precision:.4f}\n")
+            f.write(f"Recall on slice {feat}: {recall:.4f}\n")
+            f.write(f"Fbeta on slice {feat}: {fbeta:.4f}\n\n")
+
