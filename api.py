@@ -3,7 +3,6 @@ import os
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-from pydantic import Body
 
 from model.train_model import load_model
 from model.train_model import process_data
