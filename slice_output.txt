@@ -14,17 +14,17 @@ Precision on slice occupation: 1.0000
 Recall on slice occupation: 1.0000
 Fbeta on slice occupation: 1.0000
 
-Precision on slice relationship: 0.7500
+Precision on slice relationship: 1.0000
 Recall on slice relationship: 0.3750
-Fbeta on slice relationship: 0.5000
+Fbeta on slice relationship: 0.5455
 
-Precision on slice race: 0.6250
+Precision on slice race: 0.7143
 Recall on slice race: 0.5000
-Fbeta on slice race: 0.5556
+Fbeta on slice race: 0.5882
 
-Precision on slice sex: 0.7455
-Recall on slice sex: 0.6525
-Fbeta on slice sex: 0.6959
+Precision on slice sex: 0.7447
+Recall on slice sex: 0.6584
+Fbeta on slice sex: 0.6989
 
 Precision on slice native-country: 1.0000
 Recall on slice native-country: 1.0000

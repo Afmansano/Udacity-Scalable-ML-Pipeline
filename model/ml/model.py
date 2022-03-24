@@ -41,7 +41,7 @@ def train_model(X_train, y_train):
     # Defines a GridSearch for hyperparameter tunning 
     # that maximises f1
     params = {
-        'n_estimators': [100, 150, 200]
+        'n_estimators': [100, 200, 400]
     }
     clf = GridSearchCV(
         estimator=rf, 
