@@ -2,6 +2,8 @@
 
 This project aims to execute a fully CI/CD machine learning devops pipeline. Including model training, tests, deploy on Heroku with Github Actions and models and data versioning with DCV.
 
+Heroku api https://afmansanomlpipeline.herokuapp.com/docs#/default/predict__post
+
 ## Dependences 
 
 The dependences are listes on file requeriments.txt. They are:
