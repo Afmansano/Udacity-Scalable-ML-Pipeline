@@ -115,4 +115,4 @@ outputs/
 random_forest_dir/
 multirun/
 
-
+trained_model_test/
