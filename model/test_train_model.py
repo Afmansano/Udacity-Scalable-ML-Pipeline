@@ -34,7 +34,7 @@ def test_read_data():
     """
 
     try:
-        df = read_data('clean_census.csv')
+        df = read_data('clean_census.csv') 
         logging.info("SUCCESS: Testing read_data")
     except FileNotFoundError as err:
         logging.error("Testing read_data: The file wasn't found")
