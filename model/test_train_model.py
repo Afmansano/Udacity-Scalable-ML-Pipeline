@@ -34,7 +34,7 @@ def test_read_data():
     """
 
     try:
-        df = read_data()
+        df = read_data('clean_census.csv')
         logging.info("SUCCESS: Testing read_data")
     except FileNotFoundError as err:
         logging.error("Testing read_data: The file wasn't found")
@@ -55,7 +55,7 @@ def test_process_data():
     test data processing and encoders
     """
 
-    df = read_data()[:1000]
+    df = read_data('clean_census.csv')[:1000]
 
     try:
         X, y, encoder, lb = process_data(
@@ -95,8 +95,8 @@ def test_train():
     try:
         train(MODEL_FOLDER)
         assert path.isfile(path.join(MODEL_FOLDER, "model.pkl"))
-        assert path.isfile(path.join(MODEL_FOLDER, "categorical_encoder.pkl"))
-        assert path.isfile(path.join(MODEL_FOLDER, "label_encoder.pkl"))
+        assert path.isfile(path.join(MODEL_FOLDER, "OneHot_encoder.pkl"))
+        assert path.isfile(path.join(MODEL_FOLDER, "Label_encoder.pkl"))
     except AssertionError as err:
         logging.error("Testing train: model not saved")
         raise err
@@ -123,7 +123,7 @@ def test_inference():
     """
     test model inference
     """
-    df = read_data()[:100]
+    df = read_data('clean_census.csv')[:100]
 
     #perform test with no label
     df = df.drop(['salary'], axis=1)
