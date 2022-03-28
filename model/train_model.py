@@ -9,6 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 from joblib import dump
 from joblib import load
 from model.ml.model import train_model
+from model.ml.model import compute_model_metrics
 from os import path
 from os import mkdir
 
@@ -109,13 +110,34 @@ def process_data(
     return X, y, encoder, lb 
 
 
-def read_data():
+def read_data(filename):
     """
     Loads census data
+
+     Inputs
+    --------   
+    filename: str
+        Name of the csv file
     """
     # Add code to load in the data.
-    df = pd.read_csv("data/clean_census.csv")
+    df = pd.read_csv(path.join("data", filename))
     return df
+
+
+def save_data(df, filename):
+    """
+    Saves data to disk
+
+    Inputs
+    --------
+    df: DataFrame
+        Data to be saved as csv
+    filename: str
+        Name of the csv file 
+    """
+
+    df.to_csv(path.join("data", filename), index=False)
+
 
 
 def train(model_folder=MODEL_FOLDER):
@@ -123,11 +145,11 @@ def train(model_folder=MODEL_FOLDER):
     Trains a machine learning model and saves its artifacts
 
     Inputs
-    ---------
+    --------
     model_folder: str
         Path to the folder where the model will be saved
     """
-    df = read_data()
+    df = read_data("clean_census.csv")
 
     # Optional enhancement, use K-fold cross validation 
     # instead of a train-test split.
@@ -160,9 +182,25 @@ def train(model_folder=MODEL_FOLDER):
     if not path.exists(model_folder):
         mkdir(model_folder)
 
+    y_pred_train = model.predict(X_train)
+    y_pred_test = model.predict(X_test)
+
+    precision, recall, fbeta = compute_model_metrics(y_train, y_pred_train)
+    print(f"Train Precision : {precision:.4f}\n")
+    print(f"Train Recall: {recall:.4f}\n")
+    print(f"Train Fbeta: {fbeta:.4f}\n\n")
+
+    precision, recall, fbeta = compute_model_metrics(y_test, y_pred_test)
+    print(f"Test Precision : {precision:.4f}\n")
+    print(f"Test Recall: {recall:.4f}\n")
+    print(f"Test Fbeta: {fbeta:.4f}\n\n")
+
+
     dump(model, path.join(model_folder, "model.pkl"))
-    dump(encoder, path.join(model_folder, "categorical_encoder.pkl"))
-    dump(lb, path.join(model_folder, "label_encoder.pkl"))
+    dump(encoder, path.join(model_folder, "OneHot_encoder.pkl"))
+    dump(lb, path.join(model_folder, "Label_encoder.pkl"))
+    save_data(train, 'train_data.csv')
+    save_data(test, 'test_data.csv')
 
 
 def load_model(model_folder=MODEL_FOLDER):
@@ -178,9 +216,9 @@ def load_model(model_folder=MODEL_FOLDER):
     model = load(path.join(model_folder, "model.pkl"))
 
     logging.info("Loading label encoder")
-    lb = load(path.join(model_folder, "label_encoder.pkl"))
+    lb = load(path.join(model_folder, "Label_encoder.pkl"))
 
     logging.info("Loading categorical encoder")
-    encoder = load(path.join(model_folder, "categorical_encoder.pkl"))
+    encoder = load(path.join(model_folder, "OneHot_encoder.pkl"))
 
     return encoder, lb, model

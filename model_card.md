@@ -37,47 +37,16 @@ The class are <=50K for salaries equal o bellow 50K dollars and >50K for salarie
 
 ## Evaluation Data 
 
-The performance are measured on slices of data, considering categorical features, and the following results were found:
+The dataset was split into two parts, 80% pro training and 20% for testing. The results on both sets are:
 
-workclass
-- Precision on slice workclass: 1.0000
-- Recall on slice workclass: 1.0000
-- $F\beta$ on slice workclass: 1.0000
+- Train Precision : 1.0 
+- Train Recall: 1.0
+- Train Fbeta: 1.0
+<br><br>
 
-education
-- Precision on slice education: 1.0000
-- Recall on slice education: 1.0000
-- $F\beta$ on slice education: 1.0000
-
-marital-status
-- Precision on slice marital-status: 1.0000
-- Recall on slice marital-status: 0.0000
-- $F\beta$ on slice marital-status: 0.0000
-
-occupation
-- Precision on slice occupation: 1.0000
-- Recall on slice occupation: 1.0000
-- $F\beta$ on slice occupation: 1.0000
-
-relationship
-- Precision on slice relationship: 1.0000
-- Recall on slice relationship: 0.3750
-- $F\beta$ on slice relationship: 0.5455
-
-race
-- Precision on slice race: 0.7143
-- Recall on slice race: 0.5000
-- $F\beta$ on slice race: 0.5882
-
-sex
-- Precision on slice sex: 0.7447
-- Recall on slice sex: 0.6584
-- $F\beta$ on slice sex: 0.6989
-
-native-country
-- Precision on slice native-country: 1.0000
-- Recall on slice native-country: 1.0000
-- $F\beta$ on slice native-country: 1.0000
+- Test Precision : 0.7463
+- Test Recall: 0.6346
+- Test Fbeta: 0.6859
 
 
 ## Metrics
